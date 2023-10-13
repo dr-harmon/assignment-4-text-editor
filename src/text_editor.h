@@ -3,6 +3,8 @@
 #include "commands.h"
 
 #include <memory>
+#include <queue>
+#include <stack>
 #include <string>
 
 // A simple text editor like ed or edlin. Provides undo/redo support
@@ -21,4 +23,9 @@ public:
     // Undoes the undo. Throws an exception if there is nothing to redo.
     // Note: Committing new commands clears the redo state.
     void redo();
+private:
+    std::string text;
+    std::stack<std::shared_ptr<Command>> undoStack;
+    std::stack<std::shared_ptr<Command>> redoStack;
+    std::queue<std::shared_ptr<Command>> commandBuffer;
 };
