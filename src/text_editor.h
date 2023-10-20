@@ -19,5 +19,6 @@ public:
     // to undo.
     void undo();
     // Undoes the undo. Throws an exception if there is nothing to redo.
+    // Note: Committing new commands clears the redo state.
     void redo();
 };
